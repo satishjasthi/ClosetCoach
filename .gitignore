@@ -1,0 +1,11 @@
+# log files
+*.log
+*.out
+
+# vscode files
+.vscode/*
+
+# cache files
+*.pyc
+.DS_Store
+.vscode
