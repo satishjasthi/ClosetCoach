@@ -32,8 +32,6 @@ Defining your unique style can be challenging, but not with ClosetCoach. Based o
 ### Fashion Recommendation based on User Style 
 Ready to explore new fashion trends? Our fashion recommendation feature is here to help you discover new clothes that fit your personal style. Whether you want to find clothes that go well with your existing clothes in your digital wardrobe or explore new attire that aligns with your style preferences, we've got you covered. With ClosetCoach, you can discover new fashion pieces effortlessly.
 
-We understand that fashion is a personal journey, and we're here to help you every step of the way. Our features are designed to make fashion accessible, enjoyable, and effortless. So why wait? Sign up today and start exploring your style with ClosetCoach!
-
 ## Project Structure
 Firstly, let me explain that this project is split into two main parts 
 - Codebase 
