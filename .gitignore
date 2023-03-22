@@ -1,0 +1,9 @@
+# log files
+*.log
+
+# vscode files
+.vscode/*
+
+# cache files
+*.pyc
+.DS_Store
