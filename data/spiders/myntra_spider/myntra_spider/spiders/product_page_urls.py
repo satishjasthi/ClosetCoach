@@ -15,6 +15,7 @@ PAGE_NUMS = {}
 
 class ProductPageUrlScraper(scrapy.Spider):
     name = "product_page_url_scraper"
+    allowed_domains = ['myntra.com']
 
     def start_requests(self):
         url = getattr(self, "start_urls", [])
