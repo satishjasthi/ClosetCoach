@@ -36,13 +36,14 @@ class ProductPageUrlScraper(scrapy.Spider):
         loader.add_value("category", html_response.url)
         yield loader.load_item()
         # check if next page exists
-        PAGE_NUMS[response.url.split("/")[-1].split("?")[0]] += 1
-        next_page = html_response.xpath(
-            '//*[@id="desktopSearchResults"]/div[2]/section/div[2]/ul/li[12]/a/@href'
-        ).extract_first()
-        if next_page is not None:
-            if PAGE_NUMS[response.url.split("/")[-1].split("?")[0]] < MAX_PAGE_NUM:
-                html = get_page_source(next_page)
-                yield scrapy.Request(
-                    url=next_page, callback=self.parse, meta={"html": html}
-                )
+        if not test:
+            PAGE_NUMS[response.url.split("/")[-1].split("?")[0]] += 1
+            next_page = html_response.xpath(
+                '//*[@id="desktopSearchResults"]/div[2]/section/div[2]/ul/li[12]/a/@href'
+            ).extract_first()
+            if next_page is not None:
+                if PAGE_NUMS[response.url.split("/")[-1].split("?")[0]] < MAX_PAGE_NUM:
+                    html = get_page_source(next_page)
+                    yield scrapy.Request(
+                        url=next_page, callback=self.parse, meta={"html": html}
+                    )

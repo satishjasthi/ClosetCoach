@@ -2,9 +2,9 @@ import re
 import scrapy
 import logging
 from scrapy.http import HtmlResponse
-from myntra_spider.items import ProductDetails
+from data.spiders.myntra_spider.myntra_spider.items import ProductDetails
 from scrapy.loader import ItemLoader
-from myntra_spider.utils import get_page_source
+from data.spiders.myntra_spider.myntra_spider.utils import get_page_source
 
 
 class ProductDetailsScraperSpider(scrapy.Spider):
@@ -48,27 +48,32 @@ class ProductDetailsScraperSpider(scrapy.Spider):
             "product_price_after_discount",
             '//*[@id="mountRoot"]/div/div[1]/main/div[2]/div[2]/div[1]/div/p[1]/span[1]/strong/text()',
         )
-        loader.add_xpath('product_category', '//*[@id="mountRoot"]/div/div[1]/main/div[1]/a[4]/text()')
-        
+        loader.add_xpath(
+            "product_category",
+            '//*[@id="mountRoot"]/div/div[1]/main/div[1]/a[4]/text()',
+        )
+
         # extract image urls
         divs = html_response.xpath('//div[@class="image-grid-image"]')
 
         for div in divs:
             # Extract the style attribute value
-            style = div.xpath('@style').get()
+            style = div.xpath("@style").get()
 
             # Use a regular expression to extract the URL from the style attribute value
             url_match = re.search(r'url\(["\']?(.+?)["\']?\)', style)
 
             if url_match:
                 url = url_match.group(1)
-                loader.add_value('product_image_urls', url)
+                loader.add_value("product_image_urls", url)
 
         # extract product metadata
-        product_details_div = html_response.xpath('//div[@class="pdp-productDescriptorsContainer"]')
+        product_details_div = html_response.xpath(
+            '//div[@class="pdp-productDescriptorsContainer"]'
+        )
 
-        headings = product_details_div.xpath('.//h4/text()').getall()
-        contents = product_details_div.xpath('.//p/text()').getall()
+        headings = product_details_div.xpath(".//h4/text()").getall()
+        contents = product_details_div.xpath(".//p/text()").getall()
 
         details_dict = {}
         for i in range(len(headings)):
@@ -80,6 +85,5 @@ class ProductDetailsScraperSpider(scrapy.Spider):
             value = row.xpath('.//div[contains(@class, "index-rowValue")]/text()').get()
             if key and value:
                 details_dict[key.strip()] = value.strip()
-        loader.add_value('product_metadata', details_dict)
+        loader.add_value("product_metadata", details_dict)
         yield loader.load_item()
-

@@ -1,10 +1,16 @@
 """ Constants used for the test cases.
 """
 
+from tests import PROJECT_ROOT
+
+
+PROJECT_ROOT = str(PROJECT_ROOT)
+
 
 PRODUCT_CATEGORY_DETAILS = {
     "men-tshirts": {
-        "html_file_path": "tests/test_data/men_tshirts_page_1.html",
+        "html_file_path": PROJECT_ROOT
+        + "/tests/test_data/page_url_html/men_tshirts_page_1.html",
         "page_url": "https://www.myntra.com/men-tshirts?p=1",
         "urls": [
             "https://www.myntra.com/tshirts/minions-by-kook-n-keech/minions-by-kook-n-keech-men-purple-boxy-fit-printed-round-neck-pure-cotton-t-shirt/8923841/buy",
@@ -60,7 +66,8 @@ PRODUCT_CATEGORY_DETAILS = {
         ],
     },
     "men-sunglasses": {
-        "html_file_path": "tests/test_data/men-sunglasses.html",
+        "html_file_path": PROJECT_ROOT
+        + "/tests/test_data/page_url_html/men-sunglasses.html",
         "page_url": "https://www.myntra.com/men-sunglasses",
         "urls": [
             "https://www.myntra.com/sunglasses/aligatorr/aligatorr-unisex-black-lens--black-uv-protected-rectangle-sunglasses-agrcandy-260/16768312/buy",
@@ -116,7 +123,8 @@ PRODUCT_CATEGORY_DETAILS = {
         ],
     },
     "men-jackets": {
-        "html_file_path": "tests/test_data/men-jackets.html",
+        "html_file_path": PROJECT_ROOT
+        + "/tests/test_data/page_url_html/men-jackets.html",
         "page_url": "https://www.myntra.com/men-jackets",
         "urls": [
             "https://www.myntra.com/jackets/high-star/high-star-men-black-solid-denim-jacket/11275832/buy",
@@ -170,5 +178,142 @@ PRODUCT_CATEGORY_DETAILS = {
             "https://www.myntra.com/jackets/reebok/reebok-men-navy-blue-solid-training-sporty-jacket/17209372/buy",
             "https://www.myntra.com/jackets/levis/levis-men-coffee-brown-solid-corduroy-padded-jacket/18973602/buy",
         ],
+    },
+}
+
+
+TEST_PRODUCT_DETAILS = {
+    "7546900": {
+        "html_file_path": PROJECT_ROOT
+        + "/tests/test_data/product_details_html/product_7546900.html",
+        "product_category": "Tshirts",
+        "product_description": "HERENOW Men Navy Polo Collar Cotton Pure Cotton "
+        "T-shirt",
+        "product_id": "7546900",
+        "product_image_urls": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/7546900/2019/1/24/c9be0d6e-30a4-4242-b4e0-1c166b73f2781548320874402-HERENOW-Men-Polo-Collar-T-shirt-4861548320873235-1.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/7546900/2019/1/24/e4fa716f-3181-4c3b-8f35-0d30fc5ff45d1548320874385-HERENOW-Men-Polo-Collar-T-shirt-4861548320873235-2.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/7546900/2019/1/24/4ff84b3f-96cc-4e3c-84e2-b6d5d13e06451548320874372-HERENOW-Men-Polo-Collar-T-shirt-4861548320873235-3.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/7546900/2019/1/24/e8fca578-9400-4658-8a80-a932e52d4b151548320874353-HERENOW-Men-Polo-Collar-T-shirt-4861548320873235-4.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/7546900/2019/1/24/271f9b96-3b40-4330-8ce2-b093af796ac11548320874341-HERENOW-Men-Polo-Collar-T-shirt-4861548320873235-5.jpg",
+        "product_metadata": [
+            {
+                "Complete The Look": "When you need some new basic tees "
+                "to allow your statement pieces to "
+                "shine, go with this one from "
+                "HERE&NOW.",
+                "Fit": "Regular Fit",
+                "Length": "Regular",
+                "Main Trend": "New Basics",
+                "Material & Care": "100% cotton",
+                "Multipack Set": "Single",
+                "Neck": "Polo Collar",
+                "Occasion": "Casual",
+                "Pattern": "Solid",
+                "Print or Pattern Type": "Solid",
+                "Product Details": "Navy blue solid T-shirt, has a polo "
+                "collar, short sleeves",
+                "Size & Fit": "The model (height 6') is wearing a size " "M",
+                "Sleeve Length": "Short Sleeves",
+                "Sleeve Styling": "Regular Sleeves",
+                "Specifications": "Machine-wash",
+                "Sustainable": "Regular",
+                "Wash Care": "Machine Wash",
+                "Weave Type": "Knitted",
+            }
+        ],
+        "product_name": "HERE&NOW",
+        "product_num_reviews": "9.4k",
+        "product_page_url": "https://www.myntra.com/tshirts/herenow/herenow-men-navy-polo-collar-cotton-pure-cotton-t-shirt/7546900/buy",
+        "product_price_after_discount": 376.0,
+        "product_rating": 4.1,
+    },
+    "12222036": {
+        "html_file_path": PROJECT_ROOT
+        + "/tests/test_data/product_details_html/product_12222036.html",
+        "product_category": "Tops",
+        "product_description": "Black High Neck Cropped Top",
+        "product_id": "12222036",
+        "product_image_urls": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/12222036/2020/10/6/d7ae3065-98d4-42d0-b244-d2b18802ff101601959656577-SASSAFRAS-Women-Black-Solid-High-Neck-Cropped-Top-4441601959-1.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/12222036/2020/10/6/5779fc09-4088-48a9-9e0e-2d1d6a3572da1601959656523-SASSAFRAS-Women-Black-Solid-High-Neck-Cropped-Top-4441601959-2.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/12222036/2020/10/6/7e3f0bf1-2517-4c35-b3e2-d806322972461601959656454-SASSAFRAS-Women-Black-Solid-High-Neck-Cropped-Top-4441601959-3.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/12222036/2020/10/6/4e6fc0b7-c8c6-4ede-9fb2-c1120983a44b1601959656406-SASSAFRAS-Women-Black-Solid-High-Neck-Cropped-Top-4441601959-4.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/12222036/2020/10/6/228e1a91-b15b-47d8-b96a-cf596ec4294c1601959656342-SASSAFRAS-Women-Black-Solid-High-Neck-Cropped-Top-4441601959-5.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/12222036/2022/3/9/9c1a79c1-e827-4a0c-8b9e-7016734dbf0f1646807736596-SASSAFRAS-Black-High-Neck-Cropped-Top-2561646807736482-6.jpg",
+        "product_metadata": [
+            {
+                "Complete The Look": "This in-season top from SASSAFRAS "
+                "ensures comfort and "
+                "sophistication all at once.  This "
+                "black piece is perfect for "
+                "hanging out with friends when you "
+                "put it with a fabulous dark denim "
+                "jean and your favourite pair of "
+                "shoes.",
+                "Length": "Crop",
+                "Main Trend": "New Basics",
+                "Material & Care": "Material: 96% cotton, 4% Lycra",
+                "Neck": "High Neck",
+                "Occasion": "Casual",
+                "Print or Pattern Type": "Solid",
+                "Product Details": "Black solid knitted crop top, has a "
+                "high neck, and long sleeves",
+                "Size & Fit": "The model (height 5'8\") is wearing a " "size S",
+                "Sleeve Length": "Long Sleeves",
+                "Sleeve Styling": "Regular Sleeves",
+                "Specifications": "Machine Wash",
+                "Transparency": "Opaque",
+                "Type": "Regular",
+                "Weave Type": "Knitted",
+            }
+        ],
+        "product_name": "SASSAFRAS",
+        "product_num_reviews": "26.2k",
+        "product_page_url": "https://www.myntra.com/tops/sassafras/sassafras-black-high-neck-cropped-top/12222036/buy",
+        "product_price_after_discount": 419.0,
+        "product_rating": 4.5,
+    },
+    "20276770": {
+        "html_file_path": PROJECT_ROOT
+        + "/tests/test_data/product_details_html/product_20276770.html",
+        "product_category": "Suits",
+        "product_description": "Men Black Solid Single-Breasted Slim-Fit 2-Piece "
+        "Formal Suit",
+        "product_id": "20276770",
+        "product_image_urls": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/20276770/2022/10/6/84b1fff8-1417-4046-817f-4b48940236811665039013460MenBlackTwoPieceSuit1.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/20276770/2022/10/6/c83e978a-ed6e-4fb5-af83-c5dae69643f81665039013426MenBlackTwoPieceSuit2.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/20276770/2022/10/6/86cf8d62-c398-446c-8792-3fd7b08bd6ef1665039013437MenBlackTwoPieceSuit3.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/20276770/2022/10/6/aaf7cd9d-fc28-4df3-bba8-7411793cdaf91665039013449MenBlackTwoPieceSuit4.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/20276770/2022/10/6/84c6a271-dfbe-40c0-b386-2595c89a9a621665039013484MenBlackTwoPieceSuit5.jpg, "
+        "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/20276770/2022/10/6/1d2e7024-b250-4e42-a0d4-8bac36cc9a581665039013472MenBlackTwoPieceSuit6.jpg",
+        "product_metadata": [
+            {
+                "Bottom Closure": "Zip",
+                "Collar": "Notched Lapel",
+                "Fabric": "Polyester",
+                "Fit": "Slim Fit",
+                "Front Styling": "Single-Breasted",
+                "Material & Care": "Black solid slim-fit formal "
+                "trousers, has a waistband with belt "
+                "loops, zip fly with a button "
+                "closure",
+                "Occasion": "Formal",
+                "Pattern": "Solid",
+                "Product Details": "Black solid slim-fit formal 2-piece " "suit",
+                "Size & Fit": "Black solid slim-fit formal blazer, has "
+                "a notched lapel collar, single-breasted "
+                "with Single button closures, long "
+                "sleeves, two pockets, one chest welt "
+                "pocket, an attached lining and a double "
+                "vented back hem",
+                "Sleeve Length": "Long Sleeves",
+                "Specifications": "Slim-Fit",
+                "Type": "Blazer and Trousers",
+            }
+        ],
+        "product_name": "Peter England Elite",
+        "product_num_reviews": 39.0,
+        "product_page_url": "https://www.myntra.com/suits/peter-england-elite/peter-england-elite-men-black-solid-single-breasted-slim-fit-2-piece-formal-suit/20276770/buy",
+        "product_price_after_discount": "Rs. 8999",
+        "product_rating": 3.7,
     },
 }
