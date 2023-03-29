@@ -23,4 +23,5 @@ build:
       - poetry install --with docs
 mkdocs:
   configuration: mkdocs.yaml
+  theme: readthedocs
 
