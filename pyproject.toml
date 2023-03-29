@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "closetcoach"
+version = "0.1.0"
+description = ""
+authors = ["SATISH J <satish27may@gmail.com>"]
+readme = "README.md"
+packages = [
+            { include = "closetcoach_crawler" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+selenium = "^4.8.3"
+scrapy = "^2.8.0"
+pymongo = "^4.3.3"
+
+[tool.poetry.extras]
+docs = ["black", "flake8", "isort", "myst-parser", "rst-to-myst", "sphinx", "sphinx-autobuild", "sphinx-rtd-theme"]
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

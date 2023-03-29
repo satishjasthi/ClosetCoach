@@ -8,3 +8,4 @@
 # cache files
 *.pyc
 .DS_Store
+docs

@@ -3,11 +3,54 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-import random
+import logging
 from scrapy import signals
+from scrapy.exceptions import IgnoreRequest
 
-# useful for handling different item types with a single interface
-from itemadapter import is_item, ItemAdapter
+
+# component to handle failed urls
+class FailedURLMiddleware:
+    def __init__(self, mongo_uri, mongo_db, collection_name):
+        self.mongo_uri = mongo_uri
+        self.mongo_db = mongo_db
+        self.collection_name = collection_name
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            mongo_uri=crawler.settings.get("MONGO_URI"),
+            mongo_db=crawler.settings.get("MONGO_DATABASE", "items"),
+            collection_name={
+                "product_page_urls_collection_name": crawler.settings.get(
+                    "MYNTRA_PRODUCT_PAGE_URLS_FAILED_REQUESTS_COLLECTION", None
+                ),
+                "product_details_collection_name": crawler.settings.get(
+                    "MYNTRA_PRODUCT_PAGE_INFO_FAILED_REQUESTS_COLLECTION", None
+                ),
+            },
+        )
+
+    def process_exception(self, request, exception, spider):
+        if spider.name == "product_page_url_scraper":
+            collection_name = self.collection_name["product_page_urls_collection_name"]
+        elif spider.name == "product_details_scraper":
+            collection_name = self.collection_name["product_details_collection_name"]
+        # Store the failed URL in the MongoDB collection
+        ## check if the url already exists in the collection
+        key_to_update = "url"
+        existing_record = collection_name.find_one({"key": key_to_update})
+        if existing_record:
+            pass
+        else:
+            self.collection.insert_one(
+                {"url": request.url, "exception": str(exception)}
+            )
+            logging.error(f"Failed URL: {request.url} | Exception: {exception}")
+        return IgnoreRequest(exception)
+
+    def close_spider(self, spider):
+        # Close the MongoDB client when the spider is closed
+        self.client.close()
 
 
 class MyntraSpiderSpiderMiddleware:

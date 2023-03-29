@@ -8,6 +8,7 @@
 from pymongo import MongoClient
 from itemadapter import ItemAdapter
 
+
 class MongoDBPipeline:
     def __init__(self, mongo_uri, mongo_db, collection_name):
         self.mongo_uri = mongo_uri
