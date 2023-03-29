@@ -14,9 +14,9 @@ selenium = "^4.8.3"
 scrapy = "^2.8.0"
 pymongo = "^4.3.3"
 
-[tool.poetry.extras]
-docs = ["black", "flake8", "isort", "myst-parser", "rst-to-myst", "sphinx", "sphinx-autobuild", "sphinx-rtd-theme"]
-
+[tool.poetry.group.dev.dependencies]
+sphinx = "^6.1.3"
+sphinx-rtd-theme = "^1.2.0"
 
 
 [build-system]
