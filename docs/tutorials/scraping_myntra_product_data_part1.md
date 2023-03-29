@@ -39,9 +39,3 @@ And that's it! By running this spider, we can collect product page URLs and cate
 
 I hope this tutorial has been helpful in getting started with Scrapy and web scraping. Happy coding!
 
-## Previous Tutorial: Introduction to Scrapy
-[Go to Previous Tutorial](./intro_to_scrapy.md)
-
-## Next Tutorial: Scraping Myntra Product Data Part1: Product Data and Metadata
-[Go to Next Tutorial](./scraping_myntra_product_data.md)
-

@@ -1,3 +1,4 @@
+from pymongo import MongoClient
 from selenium import webdriver
 import time
 from selenium.webdriver.common.by import By
@@ -108,3 +109,15 @@ def get_page_source(url: str, click_button_xpath: str = None) -> str:
 
     html = browser.driver.page_source
     browser.close_driver()
+    return html
+
+def check_if_product_exists(url):
+     # check if product is present in the database
+     client = MongoClient()
+     db = client["ClosetCoach"]
+     collection = db["MyntraProductData"]
+     product_id = url.split("/")[-2]
+     existing_product = collection.find_one({"product_id": product_id})
+     if existing_product:
+         return True
+     return False
