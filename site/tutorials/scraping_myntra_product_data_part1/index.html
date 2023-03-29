@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Scraping Myntra Product Data Part1 - ClosetCoach</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Scraping Myntra Product Data Part1";
+        var mkdocs_page_input_path = "tutorials/scraping_myntra_product_data_part1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> ClosetCoach
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../setup/">Setup</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../intro_to_scrapy/">Introduction to Scrapy</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Scraping Myntra Product Data Part1</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../scraping_myntra_product_data_part2/">Scraping Myntra Product Data Part2</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">ClosetCoach</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Tutorials &raquo;</li>
+      <li>Scraping Myntra Product Data Part1</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="scraping-myntra-product-data-part1-product-page-urls">Scraping Myntra Product Data Part1: Product Page URLs</h1>
+<p>In this tutorial, we'll be looking at how to scrape product page URLs from Myntra using Scrapy, which is a crucial step in building the ClosetCoach project. By collecting product information from Myntra's website, we can use it to train machine learning models and provide personalized fashion recommendations to users.</p>
+<p>Let's take a closer look at the source code provided in the previous question. First, we define the spider's <code>start_requests</code> method to initiate requests to the URLs provided as <code>start_urls</code>. These URLs can be updated to target specific categories of products that we want to collect information on. For example, we could target men's clothing with the following code:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">ProductPageUrlScraper</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>     
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;product_page_url_scraper&quot;</span>     
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;myntra.com&quot;</span><span class="p">]</span>     
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://www.myntra.com/men-clothing&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Next, we define the <code>parse</code> method, which extracts product page URLs and product categories using <code>ItemLoader</code> and XPath selectors. We then yield a <code>ProductPageUrl</code> item object, which contains the URL and category of the product:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">Response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Item</span><span class="p">:</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">ItemLoader</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">ProductPageUrl</span><span class="p">(),</span> <span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+    <span class="n">loader</span><span class="o">.</span><span class="n">add_xpath</span><span class="p">(</span>
+        <span class="s2">&quot;urls&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/html/body/div[2]/div/main/div[3]/div[2]/div/div[2]/section/ul/li/a/@href&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">loader</span><span class="o">.</span><span class="n">add_value</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_item</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Finally, we check if there's a next page using XPath, and if so, we initiate a new request for that page. We also keep track of the page number using a dictionary called <code>PAGE_NUMS</code>, which ensures that we don't scrape more pages than necessary:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">next_page</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span>
+    <span class="s1">&#39;//*[@id=&quot;desktopSearchResults&quot;]/div[2]/section/div[2]/ul/li[12]/a/@href&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">next_page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">PAGE_NUMS</span><span class="p">[</span><span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">MAX_PAGE_NUM</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">next_page</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
+</code></pre></div>
+
+<p>And that's it! By running this spider, we can collect product page URLs and categories from Myntra's website, which will be used in the ClosetCoach project to provide personalized fashion recommendations to users.</p>
+<p>I hope this tutorial has been helpful in getting started with Scrapy and web scraping. Happy coding!</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../intro_to_scrapy/" class="btn btn-neutral float-left" title="Introduction to Scrapy"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../scraping_myntra_product_data_part2/" class="btn btn-neutral float-right" title="Scraping Myntra Product Data Part2">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../intro_to_scrapy/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../scraping_myntra_product_data_part2/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

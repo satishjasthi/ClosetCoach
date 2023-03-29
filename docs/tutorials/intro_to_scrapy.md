@@ -148,7 +148,3 @@ ITEM_PIPELINES = {
 }
 ```
 In this example, the pipeline class is named MyPipeline and is located in the myproject.pipelines module. The number 300 specifies the order in which the pipeline will be executed relative to other pipelines (lower numbers are executed first).
-
-## Scraping Myntra Product Data Part1: Product Page URLs
-
-[Go to Next Tutorial](./scraping_product_page_urls_using_scrapy.md)

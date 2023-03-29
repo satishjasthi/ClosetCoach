@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Introduction to Scrapy - ClosetCoach</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Introduction to Scrapy";
+        var mkdocs_page_input_path = "tutorials/intro_to_scrapy.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> ClosetCoach
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../setup/">Setup</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Introduction to Scrapy</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction-to-scrapy-spiders">Introduction to Scrapy Spiders</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#what-are-scrapy-spiders-used-for">What are Scrapy spiders used for?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scrapy-spider">Scrapy Spider</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scrapy-project-setup-overview">Scrapy Project Setup Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-scrapyitem-and-how-to-create-one">What is Scrapy.Item and How to Create One</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-scrapy-middleware-and-how-to-configure-it">What is Scrapy Middleware and How to Configure It</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-a-scrapy-pipeline-and-how-to-create-one">What is a Scrapy Pipeline and How to Create One</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../scraping_myntra_product_data_part1/">Scraping Myntra Product Data Part1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../scraping_myntra_product_data_part2/">Scraping Myntra Product Data Part2</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">ClosetCoach</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Tutorials &raquo;</li>
+      <li>Introduction to Scrapy</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="introduction-to-scrapy">Introduction to Scrapy</h1>
+<p>In this tutorial, we will learn about Scrapy spiders and how they can be used for web scraping. We will cover the following topics:</p>
+<ul>
+<li>Introduction to Scrapy spiders</li>
+<li>Creating a simple spider</li>
+<li>Setting up a Scrapy project</li>
+<li>Using Scrapy.Item</li>
+<li>Configuring Scrapy middleware</li>
+<li>Creating a basic Scrapy pipeline</li>
+</ul>
+<h2 id="introduction-to-scrapy-spiders">Introduction to Scrapy Spiders</h2>
+<p>Scrapy spiders are classes that define how a specific site or group of sites should be scraped, including how to perform the crawl (i.e., follow links) and how to extract structured data from their pages (i.e., scraping items). Spiders are the main building blocks of a Scrapy project and are responsible for managing the process of gathering data from websites.</p>
+<h3 id="what-are-scrapy-spiders-used-for">What are Scrapy spiders used for?</h3>
+<p>Scrapy spiders are used to:</p>
+<ol>
+<li>Crawl web pages and follow links to other pages.</li>
+<li>Extract and process structured data from web pages.</li>
+<li>Store the extracted data in the desired format, such as JSON, CSV, or XML.</li>
+</ol>
+<h2 id="scrapy-spider">Scrapy Spider</h2>
+<p><code>scrapy.Spider</code> is the base class for all Scrapy spiders. To create a simple spider, you need to subclass <code>scrapy.Spider</code> and define the following attributes and methods:</p>
+<ul>
+<li><code>name</code>: A unique identifier for the spider.</li>
+<li><code>start_urls</code>: A list of URLs where the spider will begin to crawl.</li>
+<li><code>parse()</code>: A method that will be called to handle the response downloaded for each of the requests made.</li>
+</ul>
+<p>Here's an example of a simple spider:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">scrapy</span>
+
+<span class="k">class</span> <span class="nc">ExampleSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;example_spider&quot;</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://example.com&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;Visited </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="scrapy-project-setup-overview">Scrapy Project Setup Overview</h2>
+<p>To set up a new Scrapy project, run the following command in your terminal:</p>
+<div class="codehilite"><pre><span></span><code>scrapy<span class="w"> </span>startproject<span class="w"> </span>myproject
+</code></pre></div>
+
+<p>This will create a new directory named <code>myproject</code> with the following structure:</p>
+<div class="codehilite"><pre><span></span><code>myproject/
+<span class="w">    </span>scrapy.cfg
+<span class="w">    </span>myproject/
+<span class="w">        </span>__init__.py
+<span class="w">        </span>items.py
+<span class="w">        </span>middlewares.py
+<span class="w">        </span>pipelines.py
+<span class="w">        </span>settings.py
+<span class="w">        </span>spiders/
+<span class="w">            </span>__init__.py
+</code></pre></div>
+
+<p>The Scrapy project structure is a standardized layout for organizing your Scrapy spider code. The structure consists of a top-level project directory, which contains a configuration file and a subdirectory with the same name as the project. This subdirectory is where the majority of the code resides.</p>
+<p>Here's a breakdown of the files and directories in the Scrapy project structure:</p>
+<ul>
+<li>
+<p><strong>scrapy.cfg</strong>: This is the main configuration file for your Scrapy project. It tells Scrapy how to find your project code and where to store output files.</p>
+</li>
+<li>
+<p><strong>myproject/</strong>: This is the subdirectory with the same name as your project. It contains the bulk of your Scrapy code.</p>
+</li>
+<li>
+<p><strong>init.py</strong>: This is an empty file that tells Python to treat the directory as a Python package.</p>
+</li>
+<li>
+<p><strong>items.py</strong>: This file defines the data items that your spider will extract from websites. Each item corresponds to a specific piece of information that you want to scrape.
+middlewares.py: This file contains code for manipulating requests and responses as they pass through the Scrapy framework. This is useful for things like modifying headers or handling cookies.</p>
+</li>
+<li>
+<p><strong>pipelines.py</strong>: This file defines the processing steps that your scraped items will go through. This can include things like cleaning and validating data or storing it in a database.
+settings.py: This file contains all of the settings for your Scrapy project, including things like user agents, download delays, and database connection information.</p>
+</li>
+<li>
+<p><strong>spiders/</strong>: This subdirectory is where you'll put the actual spider code. Each spider is defined in its own Python file in this directory.</p>
+</li>
+<li>
+<p><strong>init.py</strong>: This is another empty file that tells Python to treat the directory as a Python package.</p>
+</li>
+</ul>
+<p>Overall, this structure helps keep your Scrapy project organized and easy to navigate. By separating your code into logical modules, you can more easily maintain and extend your spiders as your scraping needs evolve.</p>
+<h2 id="what-is-scrapyitem-and-how-to-create-one">What is Scrapy.Item and How to Create One</h2>
+<p>Scrapy items are simple Python classes used to define the structure of the data you want to scrape. They work like containers and allow you to define custom fields for the data you want to collect.</p>
+<p>Here's an example of how to create a Scrapy item:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">scrapy</span>
+
+<span class="k">class</span> <span class="nc">ExampleItem</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Item</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+</code></pre></div>
+
+<h2 id="what-is-scrapy-middleware-and-how-to-configure-it">What is Scrapy Middleware and How to Configure It</h2>
+<p>Scrapy middleware is a way to process the requests and responses that flow through the Scrapy engine. Middleware components can be used to modify the requests and responses or to perform additional processing on them.</p>
+<p>To configure a middleware in Scrapy, add it to the MIDDLEWARES setting in your project's settings.py file. For example:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># settings.py</span>
+<span class="n">MIDDLEWARES</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s1">&#39;myproject.middlewares.ExampleMiddleware&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>The number 500 represents the order in which the middleware will be executed. Lower numbers are processed first.</p>
+<h2 id="what-is-a-scrapy-pipeline-and-how-to-create-one">What is a Scrapy Pipeline and How to Create One</h2>
+<p>Scrapy pipeline is a mechanism that allows you to process the items scraped by the spider. It is used to perform various operations on the scraped data, such as cleaning, validation, and storing it in a database or file. Pipelines are defined in the pipelines.py file in your Scrapy project directory.</p>
+<p>To create a basic Scrapy pipeline, you need to define a Python class that implements a few methods. Here's a step-by-step guide:</p>
+<ul>
+<li>Open your Scrapy project directory and navigate to the pipelines.py file.</li>
+<li>Create a new Python class that inherits from the scrapy.ItemPipeline class. This class will define the operations that will be performed on the scraped data.</li>
+<li>Implement the init() method, which will be called when the pipeline is created. This method can be used to initialize any resources that the pipeline needs.</li>
+<li>Implement the process_item() method, which will be called for each item scraped by the spider. - This method should return the item, optionally modified or filtered.</li>
+<li>Optionally, implement the close_spider() method, which will be called when the spider finishes. This method can be used to clean up any resources used by the pipeline.</li>
+</ul>
+<p>Here's an example of a basic Scrapy pipeline:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MyPipeline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">item</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">item</span>
+
+    <span class="k">def</span> <span class="nf">close_spider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<p>In this example, the pipeline writes the scraped data to a text file named "data.txt" and returns the original item. Note that the JSON serialization of the item is used to write it to the file.</p>
+<p>To enable the pipeline, you need to add its class to the ITEM_PIPELINES setting in the settings.py file:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ITEM_PIPELINES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;myproject.pipelines.MyPipeline&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>In this example, the pipeline class is named MyPipeline and is located in the myproject.pipelines module. The number 300 specifies the order in which the pipeline will be executed relative to other pipelines (lower numbers are executed first).</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../setup/" class="btn btn-neutral float-left" title="Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../scraping_myntra_product_data_part1/" class="btn btn-neutral float-right" title="Scraping Myntra Product Data Part1">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../setup/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../scraping_myntra_product_data_part1/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

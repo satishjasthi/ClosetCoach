@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Setup - ClosetCoach</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Setup";
+        var mkdocs_page_input_path = "setup.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ClosetCoach
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Setup</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-1-clone-the-repository">Step 1: Clone the Repository</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-set-up-a-virtual-environment">Step 2: Set up a Virtual Environment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-install-dependencies-with-poetry">Step 3: Install Dependencies with Poetry</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-scraping-data">Step 4: Scraping Data</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/intro_to_scrapy/">Introduction to Scrapy</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/scraping_myntra_product_data_part1/">Scraping Myntra Product Data Part1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/scraping_myntra_product_data_part2/">Scraping Myntra Product Data Part2</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ClosetCoach</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Setup</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="welcome-to-closetcoach-project-setup-guide">Welcome to ClosetCoach - Project Setup Guide</h1>
+<p>Thank you for your interest in the ClosetCoach project! This guide will
+walk you through setting up the project on your local machine, so you
+can use it, contribute to it, or just explore the code.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before you dive into the setup process, ensure that you have the
+following software installed on your computer:</p>
+<ol>
+<li>Python 3.8 or later: <a href="https://www.python.org/downloads/">Download
+    Python</a></li>
+<li>Git: <a href="https://git-scm.com/downloads">Download Git</a></li>
+<li>Poetry: <a href="https://python-poetry.org/docs/#installation">Install
+    Poetry</a></li>
+</ol>
+<h2 id="step-1-clone-the-repository">Step 1: Clone the Repository</h2>
+<p>Begin by cloning the repository to your local machine. Run the following
+command in your terminal or command prompt:</p>
+<p><code>git clone https://github.com/satishjasthi/ClosetCoach.git</code></p>
+<p>Next, navigate to the project directory:</p>
+<p><code>cd ClosetCoach</code></p>
+<h2 id="step-2-set-up-a-virtual-environment">Step 2: Set up a Virtual Environment</h2>
+<p>To isolate project dependencies, we recommend using a virtual
+environment. Please note that whenever the term 'python' is used in this
+guide, it refers to your locally installed Python 3.8 or later version.
+Create a virtual environment using the command below:</p>
+<p><code>python -m venv venv</code></p>
+<p>Activate the virtual environment:</p>
+<ul>
+<li>
+<p>For Windows:</p>
+<p>powershellCopy code</p>
+<p><code>venv\Scripts\activate</code></p>
+</li>
+<li>
+<p>For macOS/Linux:</p>
+<p><code>source venv/bin/activate</code></p>
+</li>
+</ul>
+<h2 id="step-3-install-dependencies-with-poetry">Step 3: Install Dependencies with Poetry</h2>
+<p>Now it's time to install the required dependencies using Poetry:</p>
+<p><code>poetry install</code></p>
+<h2 id="step-4-scraping-data">Step 4: Scraping Data</h2>
+<p>With the dependencies installed, you're ready to start scraping the
+necessary data for the project.</p>
+<p>There are two spiders in the <code>closetcoach_crawler</code> directory. The first
+one scrapes product page URLs from various product categories, while the
+second one extracts product data from the collected product page URLs on
+Myntra.</p>
+<p>To run the product page URL scraper, execute the following command:</p>
+<p><code>cd closetcoach_crawler</code></p>
+<p><code>python crawl_urls.py product_page_url_scraper</code></p>
+<p>Once you have scraped the product page URLs, you can proceed to run the
+product data scraper with this command:</p>
+<p><code>cd closetcoach_crawler</code></p>
+<p><code>python crawl_urls.py product_details_scraper</code></p>
+<p>That's it! You've successfully set up the ClosetCoach project on your
+local machine. Feel free to explore the code, or contribute to the
+project. If you encounter any issues or have questions, don't hesitate
+to create an issue on the GitHub repository. We appreciate your support
+and are excited to have you on board!</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../tutorials/intro_to_scrapy/" class="btn btn-neutral float-right" title="Introduction to Scrapy">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="../tutorials/intro_to_scrapy/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

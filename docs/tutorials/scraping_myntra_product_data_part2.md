@@ -1,5 +1,5 @@
 # Scraping Myntra Product Data Part2: Product Data and Metadata
-Welcome back! In our [previous tutorial](./scraping_product_page_urls_using_scrapy.md), we learned how to use Scrapy to collect product page URLs from Myntra. In this sequel tutorial, we will build on that knowledge and learn how to use Scrapy to scrape product data from those URLs.
+Welcome back! In our [previous tutorial](./scraping_myntra_product_data_part1.md), we learned how to use Scrapy to collect product page URLs from Myntra. In this sequel tutorial, we will build on that knowledge and learn how to use Scrapy to scrape product data from those URLs.
 
 By collecting product data, we can build machine learning models and provide personalized fashion recommendations to users through ClosetCoach. This will help users save time and make more informed purchasing decisions
 
@@ -94,6 +94,3 @@ It creates an empty dictionary called `details_dict` and populates it with the p
 Next, it selects all `div` elements containing "index-row" in their class using `'.//div[contains(@class, "index-row")]'` XPath selector. It then extracts the `key` and `value` of each row using `'.//div[contains(@class, "index-rowKey")]/text()'` and `'.//div[contains(@class, "index-rowValue")]/text()'` XPath selectors, respectively. Finally, it adds the `key-value` pairs to `details_dict`.
 
 Finally, it adds the entire `details_dict` to the `product_metadata` field of the `ProductDetails` object using `loader.add_value`.
-
-## Previous Tutorial: Scraping Myntra Product Data Part1: Product Page URLs
-[Go to Previous Tutorial](./scraping_product_page_urls_using_scrapy.md)

@@ -1,0 +1,14 @@
+site_name: ClosetCoach
+theme:
+  name: readthedocs
+
+nav:
+  - Setup: setup.md
+  - Tutorials:
+    - Introduction to Scrapy: tutorials/intro_to_scrapy.md
+    - Scraping Myntra Product Data Part1: tutorials/scraping_myntra_product_data_part1.md
+    - Scraping Myntra Product Data Part2: tutorials/scraping_myntra_product_data_part2.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
