@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
         Currently supports product_page_url_scraper and product_details_scraper.
 
-        Usage: python -m closetcoach_crawler spider_name"""
+        Usage: python crawler.py spider_name"""
     )
     parser.add_argument("spider", help="The name of the spider to run.", nargs="?")
 

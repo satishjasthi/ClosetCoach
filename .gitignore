@@ -8,5 +8,4 @@
 # cache files
 *.pyc
 .DS_Store
-docs
-old_docs
+.vscode
