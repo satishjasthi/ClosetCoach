@@ -22,5 +22,5 @@ build:
       # https://python-poetry.org/docs/managing-dependencies/#dependency-groups
       - poetry install --with docs
 mkdocs:
-  configuration: mkdocs.yml
+  configuration: mkdocs.yaml
 
