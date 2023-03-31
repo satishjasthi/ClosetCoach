@@ -109,6 +109,7 @@ def get_page_source(url: str, click_button_xpath: str = None) -> str:
 
     html = browser.driver.page_source
     browser.close_driver()
+    return html
 
 def check_if_product_exists(url):
      # check if product is present in the database
