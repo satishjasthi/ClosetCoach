@@ -53,6 +53,11 @@ Now it's time to install the required dependencies using Poetry:
 
 `poetry install`
 
+## Setp 4: Setup MongoDB
+Based on your OS, follow the instructions to install MongoDB [here](https://www.mongodb.com/docs/manual/installation/)
+
+And you can download database [here](https://drive.google.com/file/d/16d4VaRvOQHbMfG39Urzp-uYgC72X63wh/view?usp=sharing)
+
 ## Step 4: Scraping Data
 
 With the dependencies installed, you're ready to start scraping the
