@@ -2,8 +2,8 @@ import scrapy
 import logging
 from scrapy.http import HtmlResponse
 from scrapy.loader import ItemLoader
-from myntra_spider.items import ProductPageUrl
-from myntra_spider.utils import get_page_source
+from closetcoach_crawler.myntra_spider.items import ProductPageUrl
+from closetcoach_crawler.myntra_spider.utils import get_page_source
 
 # Set logging levels for external libraries
 logging.getLogger("selenium").setLevel(logging.CRITICAL)
@@ -39,12 +39,13 @@ class ProductPageUrlScraper(scrapy.Spider):
         :param response: The scrapy.http.Response object.
         :return: A generator of scrapy.Item instances.
         """
-        # Get the page source using Selenium
-        html = get_page_source(response.url)
-
+        if not response.meta.get("test", False):
+            # Get the page source using Selenium
+            html = get_page_source(response.url)
+        else:
+            html = response.meta["html"]
         # Convert Selenium response to Scrapy response
         html_response = HtmlResponse(url=response.url, body=html, encoding="utf-8")
-
         # Load and process the item
         loader = ItemLoader(item=ProductPageUrl(), response=html_response)
         loader.add_xpath(
@@ -54,18 +55,19 @@ class ProductPageUrlScraper(scrapy.Spider):
         loader.add_value("category", html_response.url)
         yield loader.load_item()
 
-        # Update the page number
-        PAGE_NUMS[response.url.split("/")[-1].split("?")[0]] += 1
+        if not response.meta.get("test", False):
+            # Update the page number
+            PAGE_NUMS[response.url.split("/")[-1].split("?")[0]] += 1
 
-        # Check if there is a next page
-        next_page = html_response.xpath(
-            '//*[@id="desktopSearchResults"]/div[2]/section/div[2]/ul/li[12]/a/@href'
-        ).extract_first()
+            # Check if there is a next page
+            next_page = html_response.xpath(
+                '//*[@id="desktopSearchResults"]/div[2]/section/div[2]/ul/li[12]/a/@href'
+            ).extract_first()
 
-        # If next page exists and the maximum page number is not reached, initiate a request for the next page
-        if next_page is not None:
-            if PAGE_NUMS[response.url.split("/")[-1].split("?")[0]] < MAX_PAGE_NUM:
-                html = get_page_source(next_page)
-                yield scrapy.Request(
-                    url=next_page, callback=self.parse, meta={"html": html}
-                )
+            # If next page exists and the maximum page number is not reached, initiate a request for the next page
+            if next_page is not None:
+                if PAGE_NUMS[response.url.split("/")[-1].split("?")[0]] < MAX_PAGE_NUM:
+                    html = get_page_source(next_page)
+                    yield scrapy.Request(
+                        url=next_page, callback=self.parse, meta={"html": html}
+                    )
