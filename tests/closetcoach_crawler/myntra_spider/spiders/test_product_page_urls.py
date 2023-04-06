@@ -16,10 +16,6 @@ from closetcoach_crawler.myntra_spider.spiders.product_page_urls import (
 )
 from tests.test_data.constants import TEST_PRODUCT_URLS
 
-# Install the AsyncioSelectorReactor and set it as the default reactor for Scrapy
-asyncioreactor.install()
-reactor.reactor = asyncioreactor.AsyncioSelectorReactor()
-
 
 class TestProductPageUrlScraper(unittest.TestCase):
     """
