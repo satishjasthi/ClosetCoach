@@ -2,9 +2,12 @@ import re
 import scrapy
 import logging
 from scrapy.http import HtmlResponse
-from myntra_spider.items import ProductDetails
+from closetcoach_crawler.myntra_spider.items import ProductDetails
 from scrapy.loader import ItemLoader
-from myntra_spider.utils import get_page_source, check_if_product_exists
+from closetcoach_crawler.myntra_spider.utils import (
+    get_page_source,
+    check_if_product_exists,
+)
 from selenium.common.exceptions import NoSuchElementException
 
 logging.getLogger("selenium").setLevel(logging.CRITICAL)
@@ -41,10 +44,14 @@ class ProductDetailsScraperSpider(scrapy.Spider):
         :return: An ItemLoader of scrapy.loader.
         """
         # generate selenium's response
-        html = get_page_source(
-            response.url,
-            click_button_xpath='//*[@id="mountRoot"]/div/div[1]/main/div[2]/div[2]/div[3]/div/div[4]/div[2]',
-        )
+        if not response.meta.get("test", False):
+            html = get_page_source(
+                response.url,
+                click_button_xpath='//*[@id="mountRoot"]/div/div[1]/main/div[2]/div[2]/div[3]/div/div[4]/div[2]',
+            )
+        else:
+            html = response.meta["html"]
+
         # convert selenium's resonse as scrapy based html response
         html_response = HtmlResponse(url=response.url, body=html, encoding="utf-8")
         loader = ItemLoader(item=ProductDetails(), response=html_response)
